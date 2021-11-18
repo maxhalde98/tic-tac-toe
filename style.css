@@ -1,0 +1,34 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+#container {
+    width: max(calc(50vw - 20vw), 300px);
+    /* height: calc(70vh - 100px); */
+    height: width;
+    background-color: gainsboro;
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+    padding-left: 10vw;
+    padding-right: 10vw;
+}
+
+.row {
+    border: solid 1px red;
+    display: flex;
+    height: calc(calc(70vh - 100px) / 3); 
+}
+
+.square {
+    display: flex;
+    border: solid 1px blue;
+    flex: 1 1 auto;
+}
