@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
 html, body {
     margin: 0;
     padding: 0;
+    font-family: 'Roboto Mono', monospace;
 }
 
 body {
@@ -11,24 +14,59 @@ body {
 }
 
 #container {
-    width: max(calc(50vw - 20vw), 300px);
-    /* height: calc(70vh - 100px); */
-    height: width;
+    min-width: max(30vw, 300px);
+    height: max(30vw, 300px);
     background-color: gainsboro;
-    padding-top: 10vh;
-    padding-bottom: 10vh;
+    padding-top: 10vw;
+    padding-bottom: 10vw;
     padding-left: 10vw;
     padding-right: 10vw;
+    border: solid 2px black;
 }
 
 .row {
-    border: solid 1px red;
     display: flex;
-    height: calc(calc(70vh - 100px) / 3); 
+    height: max(calc(30vw / 3), 100px); 
 }
 
 .square {
     display: flex;
-    border: solid 1px blue;
     flex: 1 1 auto;
+    justify-content: center;
+    align-items: center;
+    font-size: 4em;
+    min-width: max(10vw, 100px);
+}
+
+#one {
+    border-bottom: solid 2px black;
+    border-right: solid 2px black;
+}
+
+#two {
+    border-bottom: solid 2px black;
+}
+
+#three {
+    border-left: solid 2px black;
+    border-bottom: solid 2px black;
+}
+
+#four {
+    border-bottom: solid 2px black;
+    border-right: solid 2px black;
+}
+
+#five {
+    border-bottom: solid 2px black;
+    border-right: solid 2px black;
+}
+
+#six {
+    border-bottom: solid 2px black;
+}
+
+#eight {
+    border-right: solid 2px black;
+    border-left: solid 2px black;
 }
