@@ -1,44 +1,78 @@
 const gameBoard = (() => {
-    const game = ['x', 'x', 'o', 'x', 'o', 'o', , 'x' , 'x'];
+    const BOARD = [['x', 'x', 'x'], ['', '', ''], ['', '', '']];
+    console.log(BOARD.length);
+    const SQUARES = document.querySelectorAll('.square');
+
+    SQUARES.forEach(square => {
+        square.addEventListener('click', () => {
+            let squareNumber = square.id;
+            markBoard(squareNumber);
+        })
+    })
+
     const displayBoard = () => {
         let squares = document.querySelectorAll('.square');
-        for (i=0; i<squares.length; i++) {
-            squares[i].textContent = game[i];
+        for (i=0; i<3; i++) {
+            for (j=0; j<3; j++) {
+                squares[]
+            }
         }
     }
-    const markBoard = () => {
-        let letter = arguments[0];
-        let squareNumber = arguments[1];
-        let squares = document.querySelectorAll('.square');
-        squares[squareNumber].textContent = letter;
+    
+    const markBoard = (squareNumber) => {
+
+        if (PLAYER_ONE.isTurn === true) {
+
+            // document.getElementById(squareNumber).textContent = 'x';
+            // PLAYER_ONE.isTurn = false;
+            // PLAYER_TWO.isTurn = true;
+        }
+        else {
+            document.getElementById(squareNumber).textContent = 'o';
+            PLAYER_TWO.isTurn = false;
+            PLAYER_ONE.isTurn = true;
+        }
+        
+        
     }
     return {
-        displayBoard,
+        BOARD,
         markBoard
     }
 })
 
 const displayController = (() => {
-    const play = () => {
-        alert('hello');
+    const isGameOver = () => {
+        for (i=0; i<GAMEBOARD.BOARD.length; i++) {
+            if (GAMEBOARD.BOARD[i][0] === 'x' && GAMEBOARD.BOARD[i][1] === 'x' && GAMEBOARD.BOARD[i][2] === 'x') {
+                return PLAYER_ONE;
+            }
+            else if (GAMEBOARD.BOARD[i][0] === 'o' && GAMEBOARD.BOARD[i][1] === 'o' && GAMEBOARD.BOARD[i][2] === 'o') {
+                return PLAYER_TWO;
+            }
+            else {
+                return null;
+            }
+        }
+
     }
     return {
-        play
+        isGameOver
     }
 })
 
-const Player = (letter, board) => {
+const Player = (letter, isTurn) => {
     const play = () => {
-        board.play();
     }
     return {
-        play
+        play,
+        isTurn
     }
 }
 
-const BOARD = gameBoard();
+const GAMEBOARD = gameBoard();
+const PLAYER_ONE = Player('x', true);
+const PLAYER_TWO = Player('o', false);
 const CONTROLLER = displayController();
-BOARD.displayBoard();
-const PLAYER_ONE = Player('x', CONTROLLER);
-PLAYER_ONE.play();
+CONTROLLER.isGameOver();
 

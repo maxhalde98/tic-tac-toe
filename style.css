@@ -14,19 +14,19 @@ body {
 }
 
 #container {
-    min-width: max(30vw, 300px);
-    height: max(30vw, 300px);
+    min-width: max(20vw, 300px);
+    min-height: max(20vw, 300px);
     background-color: gainsboro;
-    padding-top: 10vw;
-    padding-bottom: 10vw;
-    padding-left: 10vw;
-    padding-right: 10vw;
+    padding-top: 5vw;
+    padding-bottom: 5vw;
+    padding-left: 5vw;
+    padding-right: 5vw;
     border: solid 2px black;
 }
 
 .row {
     display: flex;
-    height: max(calc(30vw / 3), 100px); 
+    height: max(calc(20vw / 3), 100px); 
 }
 
 .square {
@@ -35,7 +35,8 @@ body {
     justify-content: center;
     align-items: center;
     font-size: 4em;
-    min-width: max(10vw, 100px);
+    min-width: max(calc(20vw / 3), 100px);
+    min-height: max(calc(20vw / 3), 100px);
 }
 
 #one {
