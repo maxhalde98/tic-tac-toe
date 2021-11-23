@@ -8,9 +8,22 @@ html, body {
 
 body {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+}
+
+#header {
+    display: flex;
+    align-items: center;
+    min-width: max(20vw, 300px);
+    min-height: 50px;
+    margin-bottom: 50px;
+}
+
+#start {
+    margin-left: 20px;
 }
 
 #container {
