@@ -1,71 +1,8 @@
 const gameBoard = (() => {
     const BOARD = ['', '', '', '', '', '', '', '', ''];
-    // const SQUARES = document.querySelectorAll('.square');
-
-    // // for (i=0; i<SQUARES.length; i++) {
-    // //     let index = i;
-    // //     SQUARES[i].addEventListener('click', () => {
-    // //         markBoard(index);
-    // //     })
-    // // }
-
-    // const updateBoard = () => {
-    //     for (i=0; i<BOARD.length; i++) {
-    //         SQUARES[i].textContent = BOARD[i];
-    //     }
-    // }
     
-    // // const markBoard = (index) => {
-
-    // //     if (PLAYER_ONE.isTurn === true && CONTROLLER.state === 'ongoing') {
-    // //         if (SQUARES[index].textContent === '') {
-    // //             SQUARES[index].textContent = 'x';
-    // //             BOARD[index] = 'x';
-    // //             if (CONTROLLER.isGameOver() !== null) {
-    // //                 CONTROLLER.state = 'over';
-    // //                 setTimeout(function() {
-    // //                     alert(`Game over! ${PLAYER_ONE.name} won the game!`);
-    // //                 },10)
-    // //             }
-    // //             else if (CONTROLLER.isGameOver() === null && BOARD.includes('') === false) {
-    // //                 CONTROLLER.state = 'over';
-    // //                 setTimeout(function() {
-    // //                     alert(`Game over! Tie!`);
-    // //                 },10)
-    // //             }
-    // //             else {
-    // //                 PLAYER_ONE.isTurn = false;
-    // //                 PLAYER_TWO.isTurn = true;
-    // //             }
-    // //         }
-    // //     }
-    // //     else {
-    // //         if (SQUARES[index].textContent === '' && CONTROLLER.state === 'ongoing') {
-    // //             SQUARES[index].textContent = 'o';
-    // //             BOARD[index] = 'o';
-    // //             if (CONTROLLER.isGameOver() !== null) {
-    // //                 CONTROLLER.state = 'over';
-    // //                 setTimeout(function() {
-    // //                     alert(`Game over! ${PLAYER_TWO.name} won the game!`);
-    // //                 },10)
-    // //             }
-    // //             else if (CONTROLLER.isGameOver() === null && BOARD.includes('') === false) {
-    // //                 CONTROLLER.state = 'over';
-    // //                 setTimeout(function() {
-    // //                     alert(`Game over! Tie!`);
-    // //                 },10)
-    // //             }
-    // //             else {
-    // //                 PLAYER_ONE.isTurn = true;
-    // //                 PLAYER_TWO.isTurn = false;
-    // //             }
-    // //         }
-    // //     }
-    // // }
-
     return {
         BOARD,
-        // updateBoard
     }
 })
 
@@ -73,8 +10,6 @@ const displayController = (() => {
     const PLAYER_ONE = Player(undefined, true);
     const PLAYER_TWO = Player(undefined, false);
     const GAMEBOARD = gameBoard();
-
-    const STATE = undefined;
 
     const SQUARES = document.querySelectorAll('.square');
 
@@ -92,18 +27,16 @@ const displayController = (() => {
     }
 
     const markBoard = (index) => {
-        if (PLAYER_ONE.isTurn === true && STATE === 'ongoing') {
+        if (PLAYER_ONE.isTurn === true && isGameOver() === null && PLAYER_ONE.name !== undefined) {
             if (SQUARES[index].textContent === '') {
                 SQUARES[index].textContent = 'x';
                 GAMEBOARD.BOARD[index] = 'x';
                 if (isGameOver() !== null) {
-                    STATE = 'over';
                     setTimeout(function() {
                         alert(`Game over! ${PLAYER_ONE.name} won the game!`);
                     },10)
                 }
                 else if (isGameOver() === null && GAMEBOARD.BOARD.includes('') === false) {
-                    STATE = 'over';
                     setTimeout(function() {
                         alert(`Game over! Tie!`);
                     },10)
@@ -115,17 +48,15 @@ const displayController = (() => {
             }
         }
         else {
-            if (SQUARES[index].textContent === '' && STATE === 'ongoing') {
+            if (SQUARES[index].textContent === '' && isGameOver() === null && PLAYER_TWO.name !== undefined) {
                 SQUARES[index].textContent = 'o';
                 GAMEBOARD.BOARD[index] = 'o';
                 if (isGameOver() !== null) {
-                    STATE = 'over';
                     setTimeout(function() {
                         alert(`Game over! ${PLAYER_TWO.name} won the game!`);
                     },10)
                 }
                 else if (isGameOver() === null && GAMEBOARD.BOARD.includes('') === false) {
-                    STATE = 'over';
                     setTimeout(function() {
                         alert(`Game over! Tie!`);
                     },10)
@@ -202,7 +133,6 @@ const displayController = (() => {
     return {  
         PLAYER_ONE,
         PLAYER_TWO,  
-        STATE,
         reset
     }
 })
@@ -220,8 +150,6 @@ const CONTROLLER = displayController();
 START_BTN.addEventListener('click', () => {
     const NAMES = document.querySelector('#names');
     if (START_BTN.textContent === 'START') {
-        CONTROLLER.STATE = 'ongoing';
-        console.log(CONTROLLER.STATE);
         CONTROLLER.PLAYER_ONE.name = NAMES.elements['player-one'].value;
         CONTROLLER.PLAYER_TWO.name = NAMES.elements['player-two'].value;
         START_BTN.textContent = 'RESET';
@@ -229,6 +157,8 @@ START_BTN.addEventListener('click', () => {
     else {
         NAMES.elements['player-one'].value = '';
         NAMES.elements['player-two'].value = '';
+        CONTROLLER.PLAYER_ONE.name = undefined;
+        CONTROLLER.PLAYER_TWO.name = undefined;
         CONTROLLER.reset();
         START_BTN.textContent = 'START';
     }
